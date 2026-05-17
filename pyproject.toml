@@ -4,10 +4,26 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mlx-forge"
-version = "0.1.0"
-description = "Unix-style CLI wrappers for MLX speech and language models"
+version = "0.1.0a1"
+description = "Unix-style CLI wrappers for MLX speech, language, and TTS models"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
+authors = [
+    {name = "Ray"},
+]
+license = "MIT"
+keywords = ["mlx", "apple-silicon", "speech-to-text", "text-to-speech", "llm", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
     "mlx>=0.25.2,<0.31.1",
     "mlx-lm>=0.22.0",
@@ -17,6 +33,11 @@ dependencies = [
     "tiktoken>=0.8.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/Ray0907/mlx-forge"
+Repository = "https://github.com/Ray0907/mlx-forge"
+Issues = "https://github.com/Ray0907/mlx-forge/issues"
+
 [project.scripts]
 mlx-forge = "mlx_forge.cli.main:main"
 
@@ -25,8 +46,10 @@ where = ["src"]
 
 [dependency-groups]
 dev = [
+    "build>=1.2",
     "pytest>=8.0",
     "ruff>=0.8",
+    "twine>=5.0",
 ]
 
 [tool.pytest.ini_options]

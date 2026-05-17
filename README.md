@@ -2,6 +2,10 @@
 
 Unix-style CLI wrappers for MLX speech and language models.
 
+> Alpha software: `mlx-forge` currently targets Apple Silicon Macs and Python
+> 3.11 or 3.12. The MLX audio ecosystem is moving quickly, so model-specific
+> behavior may change between releases.
+
 `mlx-forge` keeps stdout pipe-friendly:
 
 - `stt` and `llm` write plain text to stdout.
@@ -11,7 +15,14 @@ Unix-style CLI wrappers for MLX speech and language models.
 
 ## Install
 
-This project uses `uv`.
+From PyPI:
+
+```bash
+uv tool install mlx-forge --python 3.12
+mlx-forge --help
+```
+
+For local development, clone the repository and use `uv`:
 
 ```bash
 uv sync
@@ -207,6 +218,8 @@ Run the local checks:
 uv sync
 uv run pytest
 uv run ruff check .
+uv run python -m build
+uv run twine check dist/*
 ```
 
 Run CLI smoke checks without downloading models:

@@ -35,6 +35,12 @@ jobs:
       - name: Run lint
         run: uv run ruff check .
 
+      - name: Build package
+        run: uv run python -m build
+
+      - name: Check package metadata
+        run: uv run twine check dist/*
+
       - name: CLI smoke tests
         run: |
           uv run mlx-forge --help
