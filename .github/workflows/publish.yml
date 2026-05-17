@@ -7,7 +7,7 @@ on:
 jobs:
   pypi:
     name: Publish to PyPI
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     environment: pypi
     permissions:
       contents: read
