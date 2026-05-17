@@ -1,4 +1,4 @@
-from mlx_forge.cli.main import build_parser
+from mlx_pipe.cli.main import build_parser
 
 
 def test_parser_registers_core_commands():

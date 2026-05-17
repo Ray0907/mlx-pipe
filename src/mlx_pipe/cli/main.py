@@ -4,11 +4,11 @@ import argparse
 import sys
 from collections.abc import Sequence
 
-from mlx_forge.cli import config, list, llm, pull, remove, stt, tts
+from mlx_pipe.cli import config, list, llm, pull, remove, stt, tts
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="mlx-forge")
+    parser = argparse.ArgumentParser(prog="mlx-pipe")
     subparsers = parser.add_subparsers(dest="command", required=True)
     stt.register_parser(subparsers)
     llm.register_parser(subparsers)

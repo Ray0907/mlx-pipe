@@ -1,7 +1,7 @@
 import json
 
-from mlx_forge.config import get_default_model, load_config, set_config_value
-from mlx_forge.registry import BUILTIN_DEFAULTS
+from mlx_pipe.config import get_default_model, load_config, set_config_value
+from mlx_pipe.registry import BUILTIN_DEFAULTS
 
 
 def test_default_model_resolution_prefers_explicit_over_config_and_builtin(tmp_path):

@@ -5,8 +5,8 @@ import json
 import sys
 from typing import TextIO
 
-from mlx_forge.backends.stt import transcribe
-from mlx_forge.config import get_default_model
+from mlx_pipe.backends.stt import transcribe
+from mlx_pipe.config import get_default_model
 
 
 def register_parser(subparsers: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:

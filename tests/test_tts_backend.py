@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from mlx_forge.backends.tts import synthesize
+from mlx_pipe.backends.tts import synthesize
 
 
 class FakeTtsModel:

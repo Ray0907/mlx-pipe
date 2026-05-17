@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from mlx_forge.backends.stt import transcribe
+from mlx_pipe.backends.stt import transcribe
 
 
 def test_transcribe_returns_plain_text_from_result_object():

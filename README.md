@@ -1,12 +1,12 @@
-# mlx-forge
+# mlx-pipe
 
 Unix-style CLI wrappers for MLX speech and language models.
 
-> Alpha software: `mlx-forge` currently targets Apple Silicon Macs and Python
+> Alpha software: `mlx-pipe` currently targets Apple Silicon Macs and Python
 > 3.11 or 3.12. The MLX audio ecosystem is moving quickly, so model-specific
 > behavior may change between releases.
 
-`mlx-forge` keeps stdout pipe-friendly:
+`mlx-pipe` keeps stdout pipe-friendly:
 
 - `stt` and `llm` write plain text to stdout.
 - `tts` writes WAV bytes to stdout, or to `--out`.
@@ -15,18 +15,18 @@ Unix-style CLI wrappers for MLX speech and language models.
 
 ## Install
 
-From PyPI:
+From PyPI. The package is published as `mlx-pipe`; the installed CLI command is `mlx-pipe`:
 
 ```bash
-uv tool install mlx-forge --python 3.12
-mlx-forge --help
+uv tool install mlx-pipe --python 3.12
+mlx-pipe --help
 ```
 
 For local development, clone the repository and use `uv`:
 
 ```bash
 uv sync
-uv run mlx-forge --help
+uv run mlx-pipe --help
 ```
 
 Python is pinned to `>=3.11,<3.13` because the MLX audio stack is not yet stable
@@ -37,21 +37,21 @@ on Python 3.13.
 Run a local LLM:
 
 ```bash
-uv run mlx-forge llm "Say hello in one short sentence" \
+uv run mlx-pipe llm "Say hello in one short sentence" \
   --model mlx-community/gemma-3-1b-it-4bit
 ```
 
 Transcribe audio:
 
 ```bash
-uv run mlx-forge stt /tmp/asr.wav \
+uv run mlx-pipe stt /tmp/asr.wav \
   --model RayyTien/Breeze-ASR-26-mlx-4bit
 ```
 
 Generate speech:
 
 ```bash
-uv run mlx-forge tts "Hello from Voxtral." \
+uv run mlx-pipe tts "Hello from Voxtral." \
   --model mlx-community/Voxtral-4B-TTS-2603-mlx-4bit \
   --voice casual_male \
   --out /tmp/voxtral.wav
@@ -70,18 +70,18 @@ RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 24000 Hz
 Transcribe speech, then send the transcript to an LLM:
 
 ```bash
-uv run mlx-forge stt /tmp/asr.wav \
+uv run mlx-pipe stt /tmp/asr.wav \
   --model RayyTien/Breeze-ASR-26-mlx-4bit \
-| uv run mlx-forge llm "translate to Chinese" \
+| uv run mlx-pipe llm "translate to Chinese" \
   --model mlx-community/gemma-3-1b-it-4bit
 ```
 
 Generate text, then synthesize it:
 
 ```bash
-uv run mlx-forge llm "explain MLX in one sentence" \
+uv run mlx-pipe llm "explain MLX in one sentence" \
   --model mlx-community/gemma-3-1b-it-4bit \
-| uv run mlx-forge tts \
+| uv run mlx-pipe tts \
   --model mlx-community/Voxtral-4B-TTS-2603-mlx-4bit \
   --voice casual_male \
   --out /tmp/mlx.wav
@@ -102,7 +102,7 @@ Use `--json --logprobs` to include generated token metadata. Use
 `--top-logprobs N` to include the top N alternatives for each generated token.
 
 ```bash
-uv run mlx-forge llm "Say hello" \
+uv run mlx-pipe llm "Say hello" \
   --model mlx-community/gemma-3-1b-it-4bit \
   --json \
   --logprobs \
@@ -140,28 +140,28 @@ Model resolution priority is:
 Set defaults:
 
 ```bash
-uv run mlx-forge config set llm.default mlx-community/gemma-3-1b-it-4bit
-uv run mlx-forge config set stt.default RayyTien/Breeze-ASR-26-mlx-4bit
-uv run mlx-forge config set tts.default mlx-community/Voxtral-4B-TTS-2603-mlx-4bit
+uv run mlx-pipe config set llm.default mlx-community/gemma-3-1b-it-4bit
+uv run mlx-pipe config set stt.default RayyTien/Breeze-ASR-26-mlx-4bit
+uv run mlx-pipe config set tts.default mlx-community/Voxtral-4B-TTS-2603-mlx-4bit
 ```
 
 Read config:
 
 ```bash
-uv run mlx-forge config get llm.default
-uv run mlx-forge config list
+uv run mlx-pipe config get llm.default
+uv run mlx-pipe config list
 ```
 
 By default config is stored at:
 
 ```text
-~/.config/mlx-forge/config.json
+~/.config/mlx-pipe/config.json
 ```
 
 For tests or isolated runs, override it:
 
 ```bash
-MLX_FORGE_CONFIG_HOME=$(mktemp -d) uv run mlx-forge config list
+MLX_PIPE_CONFIG_HOME=$(mktemp -d) uv run mlx-pipe config list
 ```
 
 ## Model Management
@@ -169,19 +169,19 @@ MLX_FORGE_CONFIG_HOME=$(mktemp -d) uv run mlx-forge config list
 Download a model:
 
 ```bash
-uv run mlx-forge pull mlx-community/gemma-3-1b-it-4bit
+uv run mlx-pipe pull mlx-community/gemma-3-1b-it-4bit
 ```
 
 List cached Hugging Face models:
 
 ```bash
-uv run mlx-forge list
+uv run mlx-pipe list
 ```
 
 Remove cached models:
 
 ```bash
-uv run mlx-forge remove mlx-community/gemma-3-1b-it-4bit
+uv run mlx-pipe remove mlx-community/gemma-3-1b-it-4bit
 ```
 
 ## Suggested Models
@@ -225,19 +225,19 @@ uv run twine check dist/*
 Run CLI smoke checks without downloading models:
 
 ```bash
-uv run mlx-forge --help
-uv run mlx-forge llm --help
-uv run mlx-forge stt --help
-uv run mlx-forge tts --help
+uv run mlx-pipe --help
+uv run mlx-pipe llm --help
+uv run mlx-pipe stt --help
+uv run mlx-pipe tts --help
 ```
 
 Run a config smoke check:
 
 ```bash
 tmpdir=$(mktemp -d)
-MLX_FORGE_CONFIG_HOME=$tmpdir uv run mlx-forge config set llm.default local-llm
-MLX_FORGE_CONFIG_HOME=$tmpdir uv run mlx-forge config get llm.default
-MLX_FORGE_CONFIG_HOME=$tmpdir uv run mlx-forge config list
+MLX_PIPE_CONFIG_HOME=$tmpdir uv run mlx-pipe config set llm.default local-llm
+MLX_PIPE_CONFIG_HOME=$tmpdir uv run mlx-pipe config get llm.default
+MLX_PIPE_CONFIG_HOME=$tmpdir uv run mlx-pipe config list
 ```
 
 ## CI

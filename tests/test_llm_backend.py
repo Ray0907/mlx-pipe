@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from mlx_forge.backends.llm import (
+from mlx_pipe.backends.llm import (
     _apply_chat_template,
     _clean_generated_text,
     generate_text_with_logprobs,

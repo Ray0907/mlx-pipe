@@ -4,11 +4,11 @@ import argparse
 import json
 import sys
 
-from mlx_forge.config import get_config_value, load_config, set_config_value
+from mlx_pipe.config import get_config_value, load_config, set_config_value
 
 
 def register_parser(subparsers: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
-    parser = subparsers.add_parser("config", help="Read and write mlx-forge configuration")
+    parser = subparsers.add_parser("config", help="Read and write mlx-pipe configuration")
     config_subparsers = parser.add_subparsers(dest="config_command", required=True)
 
     get_parser = config_subparsers.add_parser("get", help="Get a config value")

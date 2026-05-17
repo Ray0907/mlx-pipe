@@ -5,15 +5,15 @@ import os
 from pathlib import Path
 from typing import Any
 
-from mlx_forge.registry import BUILTIN_DEFAULTS
+from mlx_pipe.registry import BUILTIN_DEFAULTS
 
-CONFIG_HOME_ENV = "MLX_FORGE_CONFIG_HOME"
+CONFIG_HOME_ENV = "MLX_PIPE_CONFIG_HOME"
 
 
 def config_dir() -> Path:
     if override := os.environ.get(CONFIG_HOME_ENV):
         return Path(override).expanduser()
-    return Path.home() / ".config" / "mlx-forge"
+    return Path.home() / ".config" / "mlx-pipe"
 
 
 def config_path() -> Path:

@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from mlx_forge.hub import pull_model
+from mlx_pipe.hub import pull_model
 
 
 def register_parser(subparsers: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:

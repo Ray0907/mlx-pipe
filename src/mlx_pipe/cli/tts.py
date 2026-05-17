@@ -3,8 +3,8 @@ from __future__ import annotations
 import argparse
 import sys
 
-from mlx_forge.backends.tts import synthesize
-from mlx_forge.config import get_default_model
+from mlx_pipe.backends.tts import synthesize
+from mlx_pipe.config import get_default_model
 
 
 def register_parser(subparsers: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:

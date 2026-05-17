@@ -43,14 +43,14 @@ jobs:
 
       - name: CLI smoke tests
         run: |
-          uv run mlx-forge --help
-          uv run mlx-forge llm --help
-          uv run mlx-forge stt --help
-          uv run mlx-forge tts --help
+          uv run mlx-pipe --help
+          uv run mlx-pipe llm --help
+          uv run mlx-pipe stt --help
+          uv run mlx-pipe tts --help
 
       - name: Config smoke test
         run: |
           config_home="$(mktemp -d)"
-          MLX_FORGE_CONFIG_HOME="$config_home" uv run mlx-forge config set llm.default local-llm
-          test "$(MLX_FORGE_CONFIG_HOME="$config_home" uv run mlx-forge config get llm.default)" = "local-llm"
-          MLX_FORGE_CONFIG_HOME="$config_home" uv run mlx-forge config list
+          MLX_PIPE_CONFIG_HOME="$config_home" uv run mlx-pipe config set llm.default local-llm
+          test "$(MLX_PIPE_CONFIG_HOME="$config_home" uv run mlx-pipe config get llm.default)" = "local-llm"
+          MLX_PIPE_CONFIG_HOME="$config_home" uv run mlx-pipe config list

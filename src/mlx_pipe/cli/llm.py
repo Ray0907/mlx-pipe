@@ -5,8 +5,8 @@ import json
 import sys
 from typing import TextIO
 
-from mlx_forge.backends.llm import generate_text, generate_text_with_logprobs
-from mlx_forge.config import get_default_model
+from mlx_pipe.backends.llm import generate_text, generate_text_with_logprobs
+from mlx_pipe.config import get_default_model
 
 
 def build_prompt(prompt: str, stdin_text: str) -> str:

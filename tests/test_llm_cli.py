@@ -2,8 +2,8 @@ import argparse
 import io
 import json
 
-import mlx_forge.cli.llm as llm_cli
-from mlx_forge.cli.llm import build_prompt
+import mlx_pipe.cli.llm as llm_cli
+from mlx_pipe.cli.llm import build_prompt
 
 
 def test_build_prompt_uses_instruction_then_stdin_context():
